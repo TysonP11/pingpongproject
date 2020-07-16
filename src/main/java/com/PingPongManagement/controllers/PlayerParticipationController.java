@@ -24,7 +24,7 @@ import com.PingPongManagement.models.TeamParticipation;
 import com.PingPongManagement.services.PlayerParticipationService;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/player-participation")
 public class PlayerParticipationController {
 
 	@Autowired

@@ -11,7 +11,6 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
-
 public class Team {
 
 	@Id
@@ -60,8 +59,6 @@ public class Team {
 
 	public void setTeamName(String teamName) {
 		this.teamName = teamName;
-	}
-	
-	
+	}	
 	
 }

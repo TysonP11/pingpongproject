@@ -35,6 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/team/**").permitAll()
                 .antMatchers("/api/league/**").permitAll()
                 .antMatchers("/api/team-participation/**").permitAll()
+                .antMatchers("/api/player-participation/**").permitAll()
+                .antMatchers("/api/match/**").permitAll()
                 .antMatchers("/uploads/**").permitAll()
                 .antMatchers("/hello").access("hasRole('ROLE_ADMIN')")
                 .anyRequest().authenticated()
