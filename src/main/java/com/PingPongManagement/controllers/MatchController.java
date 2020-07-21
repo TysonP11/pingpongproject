@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.PingPongManagement.dtos.ResponseMessage;
 import com.PingPongManagement.models.Match;
+import com.PingPongManagement.models.TeamParticipation;
 import com.PingPongManagement.services.MatchService;
 
 @RestController
@@ -60,6 +61,29 @@ public class MatchController {
 			
 		} catch (Exception e) {
 			// TODO: handle exception
+			return new ResponseEntity<>(new ResponseMessage(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@PostMapping("/make-schedule/")
+	public ResponseEntity<?> generateSchedule(@Valid @RequestBody List<TeamParticipation> teams, BindingResult bindingResult) {
+		try {
+			List<Match> matches = matchService.generateSchedule(teams);
+			
+			if(matches.isEmpty()) {
+				return new ResponseEntity<>(new ResponseMessage("Failed to generate matches"),
+                        HttpStatus.INTERNAL_SERVER_ERROR); 
+			}
+			
+			return new ResponseEntity<>(matches, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+			List<FieldError> errors = bindingResult.getFieldErrors();
+
+			if(!errors.isEmpty()) {
+				return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+			}
+			
 			return new ResponseEntity<>(new ResponseMessage(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}

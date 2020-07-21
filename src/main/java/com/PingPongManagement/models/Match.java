@@ -33,7 +33,7 @@ public class Match {
 	@NotBlank(message = "must include round")
 	private String round;
 	
-	@NotNull(message = "must include date")
+	
 	private Date date;
 	
 	

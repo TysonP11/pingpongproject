@@ -68,7 +68,7 @@ public class TeamParticipationController {
 	@PostMapping("/")
 	public ResponseEntity<?> saveTeamParticipation(@Valid @RequestBody AddTeamParticipationRequest teamParticipation, BindingResult bindingResult) {
 		try {
-			System.out.println("1");
+			
 			teamParticipationService.saveTeamParticipation(teamParticipation);
 			
 			return new ResponseEntity<>(new ResponseMessage("Team added to League"), HttpStatus.OK);
